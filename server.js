@@ -1,11 +1,23 @@
 // Realiza o require do express, http, e socketio
-var app = require('express')();
+let app = require('express')();
 
 // passa o express para o http-server
-var http = require('http').Server(app);
+let http = require('http').Server(app);
 
 // passa o http-server par ao socketio
-var io = require('socket.io')(http);
+let io = require('socket.io')(http);
+io.set('origins', [
+  'projetos.pc/ofc/central:*', 
+  'projetos.pc/ofc/relatorios/enviar:*',
+  'projetos.pc/pracas/:*', 
+  'projetos.pc/pracas/criar/enviar:*', 
+
+  'ofc.exbrhb.net/central:*', 
+  'ofc.exbrhb.net/relatorios/enviar:*',
+  'pracas.exbrhb.net/central:*', 
+  'pracas.exbrhb.net/criar/enviar:*', 
+]);
+
 
 // app.get('/', function(req, res){
 //   res.sendFile(__dirname + '/index.html');
@@ -42,8 +54,7 @@ io.on('connection', function(socket){
     io.emit('relatorio_errado', id)
   })
 
-  socket.on('disconnect', function(){
-    
+  socket.on('disconnect', function(){    
     // remove saved socket from users object
     delete onlines[socket.id];
     io.emit('online', {...onlines});

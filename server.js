@@ -12,10 +12,8 @@ io.set('origins', [
   'projetos.pc/pracas/:*', 
   'projetos.pc/pracas/criar/enviar:*', 
 
-  'ofc.exbrhb.net/central:*', 
-  'ofc.exbrhb.net/relatorios/enviar:*',
-  'pracas.exbrhb.net/central:*', 
-  'pracas.exbrhb.net/criar/enviar:*', 
+  'ofc.exbrhb.net:*', 
+  'pracas.exbrhb.net:*', 
 ]);
 
 

@@ -13,6 +13,8 @@ let porta = process.env.PORT || 3000
 if(porta === 3000) {
   io.set('origins', [
     'projetos.pc:*', 
+    'ofc.exbrhb.net:*', 
+    'pracas.exbrhb.net:*', 
   ]);
 } else {
   io.set('origins', [
@@ -60,6 +62,7 @@ io.on('connection', socket => {
     socket.join(roomName)
   })
 
+  // ! RMO Area
   socket.on('rmo_add', rmoMembro => {
     io.to('ofcsuperiores').emit('novo_membrormo', rmoMembro)
   })
@@ -78,6 +81,23 @@ io.on('connection', socket => {
 
   socket.on('atualizar_status', membro => {
     io.to('ofcsuperiores').emit('status_updateded', membro)
+  })
+
+  // ! RM Area
+  socket.on('rm_pegou', responsavel => {
+    io.emit('new_responsavelrm', responsavel)
+  })
+
+  socket.on('iniciarRM', () => {
+    io.emit('new_rm')
+  })
+
+  socket.on('patrulhamonitoria', responsaveis => {
+    io.emit('update_monitoriapatrulha', responsaveis)
+  })
+
+  socket.on('finalziarRM', () => {
+    io.emit('rm_ended')
   })
 
   //io.to('some room').emit('some event');

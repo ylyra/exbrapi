@@ -17,10 +17,10 @@ if(porta === 3000) {
     'pracas.exbrhb.net:*', 
   ]);
 } else {
-  io.set('origins', [
-    'ofc.exbrhb.net:*', 
-    'pracas.exbrhb.net:*', 
-  ]);
+  //io.set('origins', [
+  //  'ofc.exbrhb.net:*', 
+  //  'pracas.exbrhb.net:*', 
+  //]);
 }
 
 // app.get('/', function(req, res){
